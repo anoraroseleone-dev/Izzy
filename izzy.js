@@ -152,6 +152,38 @@ function checkProCode() {
     message.style.color = "red";
   }
 }
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const chat = document.getElementById("chat");
+
+  // Get user text
+  const message = input.value.trim();
+  if (!message) return; // don't send empty
+
+  // Add user's message to chat
+  const userMsg = document.createElement("div");
+  userMsg.textContent = "You: " + message;
+  chat.appendChild(userMsg);
+
+  // Fake Izzy reply
+  const izzyMsg = document.createElement("div");
+  izzyMsg.textContent = "Izzy: Thanks for sharing 💙";
+  chat.appendChild(izzyMsg);
+
+  // Scroll chat to bottom
+  chat.scrollTop = chat.scrollHeight;
+
+  // Clear input
+  input.value = "";
+}
+
+// Also allow pressing Enter to send
+document.getElementById("userInput").addEventListener("keypress", function(e) {
+  if (e.key === "Enter") {
+    sendMessage();
+  }
+<script src="izzy.js"></script>
+
 
 
 
