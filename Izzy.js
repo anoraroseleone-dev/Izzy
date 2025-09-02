@@ -133,6 +133,25 @@ function checkProCode() {
     message.style.color = "red";
   }
 }
+let isPro = false; // default not pro
+
+function checkProCode() {
+  const code = document.getElementById("proCodeInput").value;
+  const message = document.getElementById("proMessage");
+
+  if (code === "IZZYPRO2025") {   // your real secret code
+    isPro = true;
+    message.textContent = "✅ Pro unlocked! Welcome 🎉";
+    message.style.color = "green";
+
+    // Example: make the app look cooler when Pro is active
+    document.body.classList.add("pro-active");
+    document.querySelector("h1").textContent = "Izzy 💎 (Pro)";
+  } else {
+    message.textContent = "❌ Invalid code";
+    message.style.color = "red";
+  }
+}
 
 
 
