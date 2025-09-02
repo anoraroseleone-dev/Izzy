@@ -51,3 +51,10 @@ function speak(text) {
 
 // First render
 renderMessages();
+let coins = 5;
+let isPro = false;
+
+function updateCoins() {
+  document.getElementById("coinCount").innerText = `💰 Coins: ${coins}`;
+}
+
