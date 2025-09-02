@@ -93,5 +93,46 @@ let isPro = false;
 
 function updateCoins() {
   document.getElementById("coinCount").innerText = `💰 Coins: ${coins}`;
+}// Show popup when Pro button is clicked
+document.getElementById("proButton").addEventListener("click", () => {
+  document.getElementById("proPopup").style.display = "flex";
+});
+
+// Close popup
+function closePopup() {
+  document.getElementById("proPopup").style.display = "none";
 }
+
+// Check Pro code
+function checkProCode() {
+  const code = document.getElementById("proCodeInput").value;
+  const message = document.getElementById("proMessage");
+
+  if (code === "FRIENDS2025") {
+    message.textContent = "✅ Success! Pro unlocked for free 🎉";
+    message.style.color = "green";
+  } else {
+    message.textContent = "❌ Invalid code. Try again.";
+    message.style.color = "red";
+  }
+}let isPro = false; // default is not Pro
+
+function checkProCode() {
+  const code = document.getElementById("proCodeInput").value;
+  const message = document.getElementById("proMessage");
+
+  if (code === "IZZYPRO2025") {   // <-- your real secret code
+    isPro = true; // now they are Pro
+    message.textContent = "✅ Success! Pro unlocked 🎉";
+    message.style.color = "green";
+
+    // Example: unlock Pro-only stuff
+    document.body.classList.add("pro-active");
+  } else {
+    message.textContent = "❌ Invalid code. Try again.";
+    message.style.color = "red";
+  }
+}
+
+
 
