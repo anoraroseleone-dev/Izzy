@@ -23,11 +23,48 @@ function renderMessages() {
 }
 
 function sendMessage() {
-  const text = input.value.trim();
-  if (!text) return;
-  
-  messages.push({ sender: "user", text });
+  // Track Pro access
+let isPro = false;
+
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const message = input.value.trim();
+
+  if (message === "") return; // don’t send empty messages
+
+  // Show the user’s message
+  const chat = document.getElementById("chat");
+  const userMsg = document.createElement("p");
+  userMsg.textContent = "You: " + message;
+  chat.appendChild(userMsg);
+
+  // --- Check for secret Pro code ---
+  if (message.toUpperCase() === "FREEPRO") {
+    isPro = true;
+    const proMsg = document.createElement("p");
+    proMsg.textContent = "🎉 Pro unlocked! You now have unlimited access.";
+    proMsg.style.color = "green";
+    chat.appendChild(proMsg);
+    input.value = "";
+    return;
+  }
+
+  // --- Izzy’s reply ---
+  const reply = document.createElement("p");
+  if (isPro) {
+    reply.textContent = "Izzy (Pro): Thanks for being a Pro supporter 💙";
+  } else {
+    reply.textContent = "Izzy: Thanks for sharing. Remember, type FREEPRO to unlock Pro!";
+  }
+  chat.appendChild(reply);
+
+  // Scroll to bottom
+  chat.scrollTop = chat.scrollHeight;
+
+  // Clear input
   input.value = "";
+}
+
 
   // Fake reply (demo mode)
   setTimeout(() => {
