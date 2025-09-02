@@ -183,6 +183,26 @@ document.getElementById("userInput").addEventListener("keypress", function(e) {
     sendMessage();
   }
 <script src="izzy.js"></script>
+function sendMessage() {
+  const input = document.getElementById("userInput");
+  const chat = document.getElementById("chat");
+
+  if (input.value.trim() === "") return;
+
+  // Add user's message
+  const userMessage = document.createElement("p");
+  userMessage.textContent = "You: " + input.value;
+  chat.appendChild(userMessage);
+
+  // Add Izzy's response
+  const botMessage = document.createElement("p");
+  botMessage.textContent = "Izzy: I hear you 💙";
+  chat.appendChild(botMessage);
+
+  // Clear input
+  input.value = "";
+}
+<button onclick="sendMessage()">Send</button>
 
 
 
