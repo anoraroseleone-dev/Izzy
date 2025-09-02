@@ -23,6 +23,19 @@
     </div>
   </main>
 
-  <script src="izzy.js"></script>
+  <script src="izzy.js"></script><!-- Pro Popup (hidden at first) -->
+<div id="proPopup" class="popup">
+  <div class="popup-content">
+    <h2>⭐ Pro Access</h2>
+    <p>Enter your Pro code below:</p>
+    <input type="text" id="proCodeInput" placeholder="Enter code..." />
+    <div class="popup-buttons">
+      <button onclick="checkProCode()">Submit</button>
+      <button onclick="closePopup()">Close</button>
+    </div>
+    <p id="proMessage"></p>
+  </div>
+</div>
+
 </body>
 </html>
