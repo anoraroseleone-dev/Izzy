@@ -119,4 +119,20 @@ body.pro-active h1 {
   color: gold;
   text-shadow: 0 0 10px #fff, 0 0 20px gold;
 }
+body.pro-active {
+  background: linear-gradient(to bottom right, #4f83ff, #9c27b0);
+  color: white;
+}
+
+#proButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 12px;
+  background: gold;
+  font-weight: bold;
+  cursor: pointer;
+}
 
