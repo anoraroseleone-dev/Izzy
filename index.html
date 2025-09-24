@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Izzy - Your Support Space</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <h1>Izzy 💙</h1>
+    <p class="disclaimer">
+      ⚠️ Not a substitute for therapy. If you’re in crisis, call 988 (US) or your local emergency number.
+    </p>
+
+    <!-- Upgrade button -->
+    <button id="proButton" onclick="unlockPro()">Upgrade to Pro 💎</button>
+
+    <!-- Chat area -->
+    <div id="chat"></div>
+    <div id="input-area">
+      <input id="userInput" type="text" placeholder="Type your thoughts..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <!-- Load JavaScript -->
+  <script src="izzy.js"></script>
+</body>
+</html>
