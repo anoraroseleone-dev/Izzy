@@ -17,33 +17,32 @@ function sendMessage() {
   addMessage("You", userText);
   input.value = "";
 
-  // Expanded "dictionary" of responses
-  let response = "I’m Izzy 💙 and I’m here to help.";
+  // Default response
+  let response = "I’m here 💙 I’m listening.";
 
+  // Expanded dictionary
   const responses = [
-    { keywords: ["sad", "upset", "cry"], reply: "I’m sorry you’re feeling that way 💙. Want to share what’s on your mind?" },
-    { keywords: ["happy", "excited", "joy"], reply: "That’s amazing! 😊 Tell me more about what made you feel this way." },
-    { keywords: ["lonely", "alone"], reply: "You’re not alone 💙. I’m right here with you." },
-    { keywords: ["anxious", "scared", "nervous"], reply: "That sounds hard 💙. Do you want to talk about what’s making you feel anxious?" },
-    { keywords: ["angry", "mad", "frustrated"], reply: "It’s okay to feel angry sometimes 💙. Do you want to vent a little?" },
-    { keywords: ["help", "advice", "support"], reply: "Of course 💙. Can you tell me more about what you need help with?" },
-    { keywords: ["bored"], reply: "Sometimes boredom is your mind asking for something new 💭. Want me to suggest something fun?" },
-    { keywords: ["tired", "exhausted"], reply: "Sounds like you could use some rest 💙. Have you had a chance to relax today?" },
-    { keywords: ["stressed"], reply: "Stress can feel really heavy 💙. Sometimes taking a deep breath helps. Want me to guide you through one?" },
-    { keywords: ["thank you", "thanks"], reply: "Anytime 💙. I’m always here for you." },
+    { keywords: ["sad", "upset", "cry"], reply: "I’m sorry you’re feeling this way 💙. Do you want to talk about it?" },
+    { keywords: ["happy", "excited", "joy"], reply: "That’s awesome! 😊 What made you feel so good?" },
+    { keywords: ["lonely", "alone"], reply: "You’re not alone 💙 I’m here with you." },
+    { keywords: ["anxious", "scared", "nervous"], reply: "That sounds really tough 💙. Do you want to tell me what’s on your mind?" },
+    { keywords: ["angry", "mad", "frustrated"], reply: "It’s okay to feel angry 💙. Want to vent to me about it?" },
+    { keywords: ["help", "advice", "support"], reply: "Of course 💙. Tell me more about what you need help with." },
+    { keywords: ["bored"], reply: "Sometimes boredom is your mind asking for something new 💭. Want me to suggest an activity?" },
+    { keywords: ["tired", "exhausted"], reply: "Sounds like you could use some rest 💙. Have you been able to relax today?" },
+    { keywords: ["stressed"], reply: "Stress can be really heavy 💙. Let’s pause and take a deep breath together." },
+    { keywords: ["thank you", "thanks"], reply: "Anytime 💙 I’ve got you." },
   ];
 
-  // Look for a match in the dictionary
+  // Check if the input matches any keywords
   for (let entry of responses) {
-    for (let word of entry.keywords) {
-      if (userText.toLowerCase().includes(word)) {
-        response = entry.reply;
-        break;
-      }
+    if (entry.keywords.some(word => userText.toLowerCase().includes(word))) {
+      response = entry.reply;
+      break;
     }
   }
 
-  // Reply after a little delay (feels natural)
+  // Add Izzy's reply after short delay
   setTimeout(() => {
     addMessage("Izzy", response);
   }, 600);
