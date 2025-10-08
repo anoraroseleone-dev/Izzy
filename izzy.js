@@ -137,3 +137,84 @@ function sendMessage() {
     addMessage("Izzy", response);
   }, 600);
 }
+const chat = document.getElementById("chat");
+const input = document.getElementById("userInput");
+
+// Track if Pro is unlocked
+let isPro = false;
+
+// Function to add messages to chat
+function addMessage(sender, text) {
+  const msg = document.createElement("p");
+  msg.innerHTML = `<strong>${sender}:</strong> ${text}`;
+  chat.appendChild(msg);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+// Function to unlock Pro
+function unlockPro(code) {
+  const proCode = "IZZYPRO2025"; // Example code
+  if (code === proCode) {
+    isPro = true;
+    addMessage("Izzy", "💎 Pro mode unlocked! I can now give longer, deeper responses for you.");
+  } else {
+    addMessage("Izzy", "Sorry 💙, that code isn’t valid.");
+  }
+}
+
+// Function to send messages
+function sendMessage() {
+  const userText = input.value.trim();
+  if (userText === "") return;
+
+  addMessage("You", userText);
+  input.value = "";
+
+  // Check if user wants to unlock Pro
+  if (userText.toLowerCase().startsWith("procode ")) {
+    const codeEntered = userText.split(" ")[1];
+    unlockPro(codeEntered);
+    return;
+  }
+
+  // Default response
+  let response = "I hear you 💙. It’s completely understandable to feel this way.";
+
+  // Expanded dictionary with normal and Pro responses
+  const responses = [
+    { keywords: ["sad", "upset", "cry"], replies: [
+      "I’m really sorry you’re feeling sad 💙. It’s understandable why this would be hard on you, and it’s not your fault.",
+      "It’s okay to cry 💙. Feeling sad is normal, and you’re not to blame.",
+      "I hear you 💙. This must be heavy, and it’s understandable that it affects you deeply."
+    ], proReplies: [
+      "I can tell this is weighing on you heavily 💙. Feeling sad in this situation is completely normal, and none of it is your fault. Want to talk about what’s been happening step by step?",
+      "It’s okay to feel the way you do 💙. Let’s explore why this is so hard for you and remind you that your feelings are valid.",
+      "Sadness can feel overwhelming 💙. Remember, you’re not alone, and you don’t have to carry this by yourself. Let’s unpack it together."
+    ]},
+    { keywords: ["happy", "excited", "joy"], replies: [
+      "That’s awesome! 😊 What made you feel so good?",
+      "Yay! I love hearing happy news 💙. Tell me more!",
+      "You deserve that happiness! 💙 Want to share why you’re feeling it?"
+    ], proReplies: [
+      "Your joy is contagious 💙! I’d love to hear all the details so we can really celebrate this together.",
+      "Feeling this kind of excitement is wonderful 💙. Let’s explore what brought this happiness into your life!",
+      "It’s amazing to feel such joy 💙. Let’s talk about what made you feel this way and how to savor it fully."
+    ]},
+    // Add more moods similarly...
+  ];
+
+  // Match keywords
+  for (let entry of responses) {
+    if (entry.keywords.some(word => userText.toLowerCase().includes(word))) {
+      const arrayToUse = isPro && entry.proReplies ? entry.proReplies : entry.replies;
+      const randomIndex = Math.floor(Math.random() * arrayToUse.length);
+      response = arrayToUse[randomIndex];
+      break;
+    }
+  }
+
+  // Add Izzy's reply after delay
+  setTimeout(() => {
+    addMessage("Izzy", response);
+  }, 600);
+}
