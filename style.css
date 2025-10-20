@@ -139,3 +139,52 @@ button:hover {
   color: black;
   font-weight: bold;
 }
+body {
+  font-family: sans-serif;
+  padding: 20px;
+  background-color: #f0f8ff;
+}
+
+h1 {
+  text-align: center;
+  font-size: 2em;
+}
+
+#pro-container {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.pro-btn {
+  background-color: #ff6f61;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+#chat {
+  height: 400px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+#input-area {
+  display: flex;
+  gap: 10px;
+}
+
+#input-area input {
+  flex: 1;
+  padding: 10px;
+}
+
+button {
+  cursor: pointer;
+}
+
+ 
