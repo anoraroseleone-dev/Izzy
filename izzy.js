@@ -218,3 +218,111 @@ function sendMessage() {
     addMessage("Izzy", response);
   }, 600);
 }
+const chat = document.getElementById("chat");
+const userInput = document.getElementById("userInput");
+
+let isPro = false;
+let coins = 0;
+let currentVoice = "default";
+const familyCode = "IZZYPRO"; // secret code for family/friends
+
+let messages = [
+  { sender: "bot", text: "Hi, I’m Izzy. I’m here to listen. How are you feeling today?" }
+];
+
+function renderMessages() {
+  chat.innerHTML = "";
+  messages.forEach(msg => {
+    const div = document.createElement("div");
+    div.style.margin = "10px 0";
+    div.style.textAlign = msg.sender === "user" ? "right" : "left";
+
+    const bubble = document.createElement("div");
+    bubble.style.display = "inline-block";
+    bubble.style.padding = "10px 15px";
+    bubble.style.borderRadius = "20px";
+    bubble.style.background = msg.sender === "user" ? "#4f83ff" : "#eee";
+    bubble.style.color = msg.sender === "user" ? "#fff" : "#000";
+    bubble.innerText = msg.text;
+
+    div.appendChild(bubble);
+
+    if (msg.sender === "bot") {
+      const speakBtn = document.createElement("button");
+      speakBtn.innerText = "🔊";
+      speakBtn.style.marginLeft = "10px";
+      speakBtn.onclick = () => speak(msg.text);
+      div.appendChild(speakBtn);
+    }
+
+    chat.appendChild(div);
+    chat.scrollTop = chat.scrollHeight;
+  });
+}
+
+function sendMessage() {
+  const input = userInput.value.trim();
+  if (!input) return;
+
+  messages.push({ sender: "user", text: input });
+
+  let reply = "I’m here listening. 💙";
+
+  if (isPro) {
+    reply = "Thank you for being Pro! How can I help you today in a deeper way?";
+    addCoins();
+  }
+
+  messages.push({ sender: "bot", text: reply });
+  userInput.value = "";
+  renderMessages();
+}
+
+function speak(text) {
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = "en-US";
+
+  const availableVoices = window.speechSynthesis.getVoices();
+  if (currentVoice === "female") {
+    utterance.voice = availableVoices.find(v => v.name.toLowerCase().includes("female")) || availableVoices[0];
+  } else if (currentVoice === "male") {
+    utterance.voice = availableVoices.find(v => v.name.toLowerCase().includes("male")) || availableVoices[0];
+  }
+
+  window.speechSynthesis.speak(utterance);
+}
+
+// Coins system
+function addCoins() {
+  coins += 5; // 5 coins per message for Pro
+  console.log(`You earned 5 coins! Total: ${coins}`);
+}
+
+// Change voice
+function changeVoice(voiceCode) {
+  if (!isPro) {
+    alert("Upgrade to Pro to change voices 💙");
+    return;
+  }
+  currentVoice = voiceCode;
+  alert(`Voice changed to ${voiceCode}`);
+}
+
+// Pro button logic
+function proClick() {
+  const code = prompt("Enter your Pro code (for family/friends) or leave blank to donate $5/month:");
+  if (code === familyCode) {
+    isPro = true;
+    alert("Pro unlocked! Enjoy deeper responses, coins, and voices 💙");
+  } else {
+    const donate = confirm("You need to donate $5/month to unlock Pro. Click OK to donate.");
+    if (donate) {
+      window.open("https://www.savethechildren.org/us/what-we-do/donate", "_blank");
+      alert("After donating, refresh the page and Pro will unlock for you!");
+    }
+  }
+}
+
+// Initial render
+renderMessages();
+
