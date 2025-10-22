@@ -1,5 +1,5 @@
 // ====== FIREBASE CONFIG ======
-// Replace this with your Firebase config from your project
+// Replace this with your Firebase config from your 
 const firebaseConfig = {
   apiKey: "YOUR_API_KEY",
   authDomain: "YOUR_PROJECT.firebaseapp.com",
@@ -7,6 +7,7 @@ const firebaseConfig = {
   storageBucket: "YOUR_PROJECT.appspot.com",
   messagingSenderId: "YOUR_SENDER_ID",
   appId: "YOUR_APP_ID"
+};
 };
 
 firebase.initializeApp(firebaseConfig);
