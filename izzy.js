@@ -1,14 +1,14 @@
 // ====== FIREBASE CONFIG ======
 // Replace this with your Firebase config from your 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyA2bExample123",
+  authDomain: "izzy-support.firebaseapp.com",
+  projectId: "izzy-support",
+  storageBucket: "izzy-support.appspot.com",
+  messagingSenderId: "1234567890",
+  appId: "1:1234567890:web:abc123xyz"
 };
-};
+
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
