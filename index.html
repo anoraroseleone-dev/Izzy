@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Izzy - Your Support Space</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <div id="auth-container">
+    <h1>Welcome to Izzy 💙</h1>
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="signUp()">Sign Up</button>
+    <button onclick="signIn()">Sign In</button>
+    <p id="auth-message"></p>
+  </div>
+
+  <div id="app" style="display:none;">
+    <h1>Izzy 💙</h1>
+    <div id="pro-container">
+      <button onclick="proClick()" class="pro-btn">Unlock Pro</button>
+    </div>
+    <p class="disclaimer">
+      ⚠️ Not a substitute for therapy. If you are in crisis, call 988 (US) or your local emergency number.
+    </p>
+
+    <div id="chat"></div>
+
+    <div id="input-area">
+      <input id="userInput" type="text" placeholder="Type your thoughts...">
+      <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <div id="voice-options" style="margin-top:10px; text-align:center;">
+      <button onclick="changeVoice('default')">Default Voice</button>
+      <button onclick="changeVoice('female')">Calm Female</button>
+      <button onclick="changeVoice('male')">Calm Male</button>
+    </div>
+  </div>
+
+  <script src="izzy.js"></script>
+</body>
+</html>
